@@ -1,0 +1,5 @@
+<settings>
+    <category label="32000">
+        <setting id="show_deleted_videos" label="32001" type="bool" default="true"/>
+    </category>
+</settings>

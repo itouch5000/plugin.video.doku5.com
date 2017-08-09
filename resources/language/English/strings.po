@@ -1,0 +1,100 @@
+# Kodi Media Center language file
+msgid ""
+msgstr ""
+
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+
+
+msgctxt "#32000"
+msgid "General"
+msgstr ""
+
+msgctxt "#32001"
+msgid "Show deleted videos (playable with mirror)"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Next page"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Vote up"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Vote down"
+msgstr ""
+
+msgctxt "#30005"
+msgid "New Documentaries"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Reuploads"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Top of the week"
+msgstr ""
+
+msgctxt "#30008"
+msgid "Top of the month"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Top of the year"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Categories"
+msgstr ""
+
+msgctxt "#30012"
+msgid "A-Z"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Bookmarks"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Last year"
+msgstr ""
+
+msgctxt "#30015"
+msgid "Select mirror for"
+msgstr ""
+
+msgctxt "#30016"
+msgid "Search video"
+msgstr ""
+
+msgctxt "#30017"
+msgid "Add to Bookmarks"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Remove from Bookmarks"
+msgstr ""
+
+msgctxt "#30019"
+msgid "Error"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Documentation already rated"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Documentation already in Bookmarks"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Select mirror for"
+msgstr ""

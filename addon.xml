@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.doku5.com" name="Doku5" version="1.0.0" provider-name="itouch5000">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.requests" version="2.7.0"/>
+		<import addon="plugin.video.youtube" version="5.1.20.6"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">The largest german documentary library on the net</summary>
+        <description lang="en">Over 15,000 documentaries, documentaries, reports and lectures in full length.</description>
+        <summary lang="de">Die größte Doku-Mediathek im Netz</summary>
+		<description lang="de">Über 15.000 Dokumentationen, Dokumentafilme, Reportagen und Voträge in voller Länge.</description>
+        <license>GPL 2.0</license>
+        <assets>
+            <icon>resources\icon.png</icon>
+            <fanart>resources\fanart.jpg</fanart>
+            <screenshot>resources\screenshot-01.jpg</screenshot>
+            <screenshot>resources\screenshot-02.jpg</screenshot>
+            <screenshot>resources\screenshot-03.jpg</screenshot>
+        </assets>
+    </extension>
+</addon>
