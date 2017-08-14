@@ -377,7 +377,7 @@ def play(params):
         video_url = "plugin://plugin.video.youtube/play/?video_id={}".format(params.youtube_id)
     else:
         results = []
-        for media in youtube_search(params.name):
+        for media in youtube_search(urllib.quote_plus(params.name)):
             label = media["label"]
             label2 = media["plot"]
             image = ""
