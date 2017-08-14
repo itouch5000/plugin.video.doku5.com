@@ -97,6 +97,7 @@ def list_videos(url):
     nonce = json_data['nonce']
     listing = []
     for i in json_data['dokus']:
+        title = HTMLParser().unescape(i['title'])
         plot = i['description']
         studio = i['dokuSrc']
         date = '.'.join(reversed(i['date'].split(' ', 1)[0].split('-')))
@@ -109,11 +110,11 @@ def list_videos(url):
         description += u" | {}% ({} {})\n{}".format(rating, votes, "Vote" if votes == 1 else "Votes", plot)
 
         listing.append({
-            'label': i['title'],
+            'label': title,
             'thumb': i['cover'],
             'fanart': 'http://img.youtube.com/vi/{}/maxresdefault.jpg'.format(i['youtubeId']),
             'info': {'video': {
-                'title': i['title'],
+                'title': title,
                 'plot': description,
                 'duration': i['length']*60,
                 'aired': date,
@@ -131,7 +132,7 @@ def list_videos(url):
                  'XBMC.RunPlugin({})'.format(plugin.get_url(action='vote_down', doku_id=i['dokuId'], nonce=nonce))),
             ],
             'is_playable': True,
-            'url': plugin.get_url(action='play', youtube_id=i['youtubeId'], name=i['title'].encode('utf-8')),
+            'url': plugin.get_url(action='play', youtube_id=i['youtubeId'], name=title.encode('utf-8')),
         })
     if 'nextpage' in json_data['query']:
         listing.append({
@@ -289,7 +290,7 @@ def bookmarks(params):
 
 @plugin.action()
 def add_bookmark(params):
-    label = title = xbmc.getInfoLabel('ListItem.Label')
+    label = xbmc.getInfoLabel('ListItem.Label')
     thumb = xbmc.getInfoLabel('ListItem.Thumb')
     year = xbmc.getInfoLabel('ListItem.Year')
     plot = xbmc.getInfoLabel('ListItem.Plot')
@@ -310,7 +311,7 @@ def add_bookmark(params):
                 'thumb': thumb,
                 'fanart': 'http://img.youtube.com/vi/{}/maxresdefault.jpg'.format(params.youtube_id),
                 'info': {'video': {
-                    'title': title,
+                    'title': label,
                     'plot': plot,
                     'duration': int(duration)*60,
                     'aired': aired,
