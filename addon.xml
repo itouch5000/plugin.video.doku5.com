@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.video.doku5.com" name="Doku5" version="1.0.1" provider-name="itouch5000">
+<addon id="plugin.video.doku5.com" name="Doku5" version="1.0.2" provider-name="itouch5000">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.requests" version="2.7.0"/>
-		<import addon="plugin.video.youtube" version="5.1.20.6"/>
+        <import addon="plugin.video.youtube" version="5.1.20.6"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
