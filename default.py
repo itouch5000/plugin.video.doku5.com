@@ -88,7 +88,7 @@ class DialogSelect(xbmcgui.WindowXMLDialog):
 
 def build_url(params):
     params.setdefault('noDYV', 'off' if plugin.get_setting('show_deleted_videos') else 'on')
-    url = '{}?{}'.format(base_url, urllib.urlencode(params))
+    url = '{0}?{1}'.format(base_url, urllib.urlencode(params))
     return url
 
 
@@ -104,15 +104,15 @@ def list_videos(url):
         votes = i['voting']['voteCountAll']
         rating = float(i['voting']['voteCountInPerc'])/10
 
-        description = u"{}".format(date)
+        description = u"{0}".format(date)
         if studio and studio != "N/A":
-            description += u" | {}".format(studio)
-        description += u" | {}% ({} {})\n{}".format(rating, votes, "Vote" if votes == 1 else "Votes", plot)
+            description += u" | {0}".format(studio)
+        description += u" | {0}% ({1} {2})\n{3}".format(rating, votes, "Vote" if votes == 1 else "Votes", plot)
 
         listing.append({
             'label': title,
             'thumb': i['cover'],
-            'fanart': 'http://img.youtube.com/vi/{}/maxresdefault.jpg'.format(i['youtubeId']),
+            'fanart': 'http://img.youtube.com/vi/{0}/maxresdefault.jpg'.format(i['youtubeId']),
             'info': {'video': {
                 'title': title,
                 'plot': description,
@@ -125,18 +125,18 @@ def list_videos(url):
             }},
             'context_menu': [
                 (_("Add to Bookmarks"),
-                 'XBMC.RunPlugin({})'.format(plugin.get_url(action='add_bookmark', youtube_id=i['youtubeId']))),
+                 'XBMC.RunPlugin({0})'.format(plugin.get_url(action='add_bookmark', youtube_id=i['youtubeId']))),
                 (_("Vote up"),
-                 'XBMC.RunPlugin({})'.format(plugin.get_url(action='vote_up', doku_id=i['dokuId'], nonce=nonce))),
+                 'XBMC.RunPlugin({0})'.format(plugin.get_url(action='vote_up', doku_id=i['dokuId'], nonce=nonce))),
                 (_("Vote down"),
-                 'XBMC.RunPlugin({})'.format(plugin.get_url(action='vote_down', doku_id=i['dokuId'], nonce=nonce))),
+                 'XBMC.RunPlugin({0})'.format(plugin.get_url(action='vote_down', doku_id=i['dokuId'], nonce=nonce))),
             ],
             'is_playable': True,
             'url': plugin.get_url(action='play', youtube_id=i['youtubeId'], name=title.encode('utf-8')),
         })
     if 'nextpage' in json_data['query']:
         listing.append({
-            'label': '[COLOR blue]{name}[/COLOR]'.format(name=_("Next page")),
+            'label': '[COLOR blue]{0}[/COLOR]'.format(_("Next page")),
             'thumb': ICON_NEXT,
             'url': plugin.get_url(action='index', url=HTMLParser().unescape(json_data['query']['nextpage'])),
             'fanart': FANART,
@@ -231,7 +231,7 @@ def last_year(params):
 
 @plugin.action()
 def year(params):
-    url = build_url({'top-dokus': 'year-{}'.format(params.year)})
+    url = build_url({'top-dokus': 'year-{0}'.format(params.year)})
     return list_videos(url)
 
 
@@ -246,7 +246,7 @@ def search(params):
 
 @plugin.action()
 def list_categories(params):
-    json_data = requests.get('{}?getCats'.format(base_url)).json()
+    json_data = requests.get('{0}?getCats'.format(base_url)).json()
     listing = []
     for i in json_data:
         listing.append({
@@ -283,7 +283,7 @@ def bookmarks(params):
     for index, item in enumerate(listing):
         item['context_menu'] = [
             (_("Remove from Bookmarks"),
-             'XBMC.RunPlugin({})'.format(plugin.get_url(action='remove_bookmark', index=index))),
+             'XBMC.RunPlugin({0})'.format(plugin.get_url(action='remove_bookmark', index=index))),
         ]
     return listing
 
@@ -309,7 +309,7 @@ def add_bookmark(params):
             data = {
                 'label': label,
                 'thumb': thumb,
-                'fanart': 'http://img.youtube.com/vi/{}/maxresdefault.jpg'.format(params.youtube_id),
+                'fanart': 'http://img.youtube.com/vi/{0}/maxresdefault.jpg'.format(params.youtube_id),
                 'info': {'video': {
                     'title': label,
                     'plot': plot,
@@ -357,7 +357,7 @@ def youtube_search(query):
         "id": 1,
         "params": {
             "properties": FIELDS_FILES,
-            "directory": "plugin://plugin.video.youtube/kodion/search/query/?q={}".format(query)
+            "directory": "plugin://plugin.video.youtube/kodion/search/query/?q={0}".format(query)
         }
     }
     json_response = xbmc.executeJSONRPC(json.dumps(data))
@@ -373,8 +373,8 @@ def youtube_search(query):
 
 @plugin.action()
 def play(params):
-    if requests.head("http://www.youtube.com/oembed?url=http://www.youtube.com/watch?v={}&format=json".format(params.youtube_id)).status_code == 200:
-        video_url = "plugin://plugin.video.youtube/play/?video_id={}".format(params.youtube_id)
+    if requests.head("http://www.youtube.com/oembed?url=http://www.youtube.com/watch?v={0}&format=json".format(params.youtube_id)).status_code == 200:
+        video_url = "plugin://plugin.video.youtube/play/?video_id={0}".format(params.youtube_id)
     else:
         results = []
         for media in youtube_search(urllib.quote_plus(params.name)):
@@ -388,7 +388,7 @@ def play(params):
             listitem.setProperty("path", media["file"])
             results.append(listitem)
         xbmc.executebuiltin("dialog.Close(busydialog)")
-        title = "{} \"{}\"".format(_("Select mirror for"), params.name)
+        title = "{0} \"{1}\"".format(_("Select mirror for"), params.name)
         dialog = DialogSelect("DialogSelect.xml", "", listing=results, title=title)
         dialog.doModal()
         result = dialog.result
